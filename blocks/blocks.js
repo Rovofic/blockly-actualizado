@@ -23,6 +23,8 @@ const texts = goog.require('Blockly.libraryBlocks.texts');
 const variables = goog.require('Blockly.libraryBlocks.variables');
 const variablesDynamic = goog.require('Blockly.libraryBlocks.variablesDynamic');
 const base=goog.require('Blockly.libraryBlocks.base');
+const rovofic=goog.require('Blockly.libraryBlocks.rovofic');
+
 /* eslint-disable-next-line no-unused-vars */
 const {BlockDefinition} = goog.requireType('Blockly.blocks');
 
@@ -37,6 +39,7 @@ exports.texts = texts;
 exports.variables = variables;
 exports.variablesDynamic = variablesDynamic;
 exports.base= base;
+exports.rovofic=rovofic;
 /**
  * A dictionary of the block definitions provided by all the
  * Blockly.libraryBlocks.* modules.
@@ -44,5 +47,5 @@ exports.base= base;
  */
 const blocks = Object.assign(
     {}, colour.blocks, lists.blocks, logic.blocks, loops.blocks, math.blocks,
-    procedures.blocks, variables.blocks, variablesDynamic.blocks,base.blocks);
+    procedures.blocks, variables.blocks, variablesDynamic.blocks,base.blocks,rovofic.blocks);
 exports.blocks = blocks;

@@ -17,7 +17,7 @@ goog.module.declareLegacyNamespace();
 const objectUtils = goog.require('Blockly.utils.object');
 const stringUtils = goog.require('Blockly.utils.string');
 const {Block} = goog.requireType('Blockly.Block');
-const {Generator} = goog.require('Blockly.Generator');
+Generator = goog.require('Blockly.Generator');
 const {inputTypes} = goog.require('Blockly.inputTypes');
 const {Names} = goog.require('Blockly.Names');
 const {Workspace} = goog.requireType('Blockly.Workspace');

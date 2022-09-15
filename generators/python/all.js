@@ -22,4 +22,5 @@ goog.require('Blockly.Python.procedures');
 goog.require('Blockly.Python.texts');
 goog.require('Blockly.Python.variables');
 goog.require('Blockly.Python.variablesDynamic');
+goog.require('Blockly.Python.base');
 
