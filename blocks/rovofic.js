@@ -29,7 +29,6 @@
 
  goog.module('Blockly.libraryBlocks.rovofic');
 
-goog.require('Blockly.Blocks');
 
 const {Align} = goog.require('Blockly.Input');
 const {BlockDefinition} = goog.requireType('Blockly.blocks');
