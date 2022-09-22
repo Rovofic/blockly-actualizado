@@ -23,3 +23,4 @@ goog.require('Blockly.PHP.texts');
 goog.require('Blockly.PHP.variables');
 goog.require('Blockly.PHP.variablesDynamic');
 
+
