@@ -102,6 +102,7 @@
     "yargs": "^17.2.1"
   },
   "dependencies": {
+    "blockly": "^7.20211209.5",
     "google-closure-library": "^20220905.0.0",
     "jsdom": "15.2.1"
   }

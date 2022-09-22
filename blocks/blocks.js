@@ -13,6 +13,8 @@
 goog.module('Blockly.libraryBlocks');
 goog.module.declareLegacyNamespace();
 
+const base = goog.require('Blockly.libraryBlocks.base');
+const rovofic = goog.require('Blockly.libraryBlocks.rovofic');
 const colour = goog.require('Blockly.libraryBlocks.colour');
 const lists = goog.require('Blockly.libraryBlocks.lists');
 const logic = goog.require('Blockly.libraryBlocks.logic');
@@ -22,8 +24,6 @@ const procedures = goog.require('Blockly.libraryBlocks.procedures');
 const texts = goog.require('Blockly.libraryBlocks.texts');
 const variables = goog.require('Blockly.libraryBlocks.variables');
 const variablesDynamic = goog.require('Blockly.libraryBlocks.variablesDynamic');
-const base=goog.require('Blockly.libraryBlocks.base');
-const rovofic=goog.require('Blockly.libraryBlocks.rovofic');
 
 /* eslint-disable-next-line no-unused-vars */
 const {BlockDefinition} = goog.requireType('Blockly.blocks');
