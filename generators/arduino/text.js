@@ -25,18 +25,19 @@
 
 goog.module('Blockly.Arduino.texts');
 
-goog.require('Blockly.Arduino');
+const JavaScript = goog.require('Blockly.Arduino');
+const {NameType} = goog.require('Blockly.Names');
 
 
-Blockly.Arduino.text = function() {
+Arduino.text = function() {
   // Text value.
-  var code = Blockly.Arduino.quote_(this.getFieldValue('TEXT'));
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  var code = Arduino.quote_(this.getFieldValue('TEXT'));
+  return [code, Arduino.ORDER_ATOMIC];
 };
 
 
-Blockly.Arduino.text_text = function() {
+Arduino.text_text = function() {
   // Text value.
-  var code = Blockly.Arduino.quote_(this.getFieldValue('TEXT'));
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  var code = Arduino.quote_(this.getFieldValue('TEXT'));
+  return [code, Arduino.ORDER_ATOMIC];
 };

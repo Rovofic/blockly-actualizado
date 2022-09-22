@@ -11,6 +11,7 @@ goog.require('Blockly.JavaScript');
 goog.require('Blockly.Lua');
 goog.require('Blockly.PHP');
 goog.require('Blockly.Python');
+goog.require('Blockly.Arduino')
 const {sharedTestSetup, sharedTestTeardown} = goog.require('Blockly.test.helpers.setupTeardown');
 
 
@@ -87,7 +88,9 @@ suite('Generator', function() {
       [Blockly.JavaScript, 'JavaScript'],
       [Blockly.Lua, 'Lua'],
       [Blockly.PHP, 'PHP'],
-      [Blockly.Python, 'Python']];
+      [Blockly.Python, 'Python'],
+      [Blockly.Arduino, 'Arduino']];
+
 
     suite('Trivial', function() {
       testCase.forEach(function(testCase) {
