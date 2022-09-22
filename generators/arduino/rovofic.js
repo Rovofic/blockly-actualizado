@@ -171,7 +171,7 @@ Blockly.Arduino.rovofic_motor_shield_m = function() {
         " else if(speed3<=-255)  "+
         " {  analogWrite(6,0); analogWrite(9,255); }\n"+
         " else  "+
-        " { analogWrite(6,0);\ analogWrite(9,0); }\n"+
+        " { analogWrite(6,0);' 'analogWrite(9,0); }\n"+
     "}\n\n"
 
     code="motor1("+speed3+");\n";

@@ -25,14 +25,22 @@
 
 goog.module('Blockly.Arduino');
 
-goog.require('Blockly.Generator');
+goog.module.declareLegacyNamespace();
 
+
+const Variables = goog.require('Blockly.Variables');
+const stringUtils = goog.require('Blockly.utils.string');
+const {Block} = goog.requireType('Blockly.Block');
+Generator = goog.require('Blockly.Generator');
+const {Names, NameType} = goog.require('Blockly.Names');
+const {Workspace} = goog.requireType('Blockly.Workspace');
+const {inputTypes} = goog.require('Blockly.inputTypes');
 
 /**
  * Arduino code generator.
- * @type !Blockly.Generator
+ * @type {!Blockly.Generator}
  */
-Blockly.Arduino = new Blockly.Generator('Arduino');
+const Arduino = new Blockly.Generator('Arduino');
 
 /**
  * List of illegal variable names.
@@ -41,7 +49,7 @@ Blockly.Arduino = new Blockly.Generator('Arduino');
  * accidentally clobbering a built-in object or function.
  * @private
  */
-Blockly.Arduino.addReservedWords(
+Arduino.addReservedWords(
   // http://arduino.cc/en/Reference/HomePage
   'setup,loop,if,else,for,switch,case,while,do,break,continue,return,goto,define,include,HIGH,LOW,INPUT,OUTPUT,INPUT_PULLUP,true,false,interger, constants,floating,point,void,bookean,char,unsigned,byte,int,word,long,float,double,string,String,array,static, volatile,const,sizeof,pinMode,digitalWrite,digitalRead,analogReference,analogRead,analogWrite,tone,noTone,shiftOut,shitIn,pulseIn,millis,micros,delay,delayMicroseconds,min,max,abs,constrain,map,pow,sqrt,sin,cos,tan,randomSeed,random,lowByte,highByte,bitRead,bitWrite,bitSet,bitClear,bit,attachInterrupt,detachInterrupt,interrupts,noInterrupts'
 );
@@ -50,22 +58,22 @@ Blockly.Arduino.addReservedWords(
  * Order of operation ENUMs.
  *
  */
-Blockly.Arduino.ORDER_ATOMIC = 0;         // 0 "" ...
-Blockly.Arduino.ORDER_UNARY_POSTFIX = 1;  // expr++ expr-- () [] .
-Blockly.Arduino.ORDER_UNARY_PREFIX = 2;   // -expr !expr ~expr ++expr --expr
-Blockly.Arduino.ORDER_MULTIPLICATIVE = 3; // * / % ~/
-Blockly.Arduino.ORDER_ADDITIVE = 4;       // + -
-Blockly.Arduino.ORDER_SHIFT = 5;          // << >>
-Blockly.Arduino.ORDER_RELATIONAL = 6;     // is is! >= > <= <
-Blockly.Arduino.ORDER_EQUALITY = 7;       // == != === !==
-Blockly.Arduino.ORDER_BITWISE_AND = 8;    // &
-Blockly.Arduino.ORDER_BITWISE_XOR = 9;    // ^
-Blockly.Arduino.ORDER_BITWISE_OR = 10;    // |
-Blockly.Arduino.ORDER_LOGICAL_AND = 11;   // &&
-Blockly.Arduino.ORDER_LOGICAL_OR = 12;    // ||
-Blockly.Arduino.ORDER_CONDITIONAL = 13;   // expr ? expr : expr
-Blockly.Arduino.ORDER_ASSIGNMENT = 14;    // = *= /= ~/= %= += -= <<= >>= &= ^= |=
-Blockly.Arduino.ORDER_NONE = 99;          // (...)
+Arduino.ORDER_ATOMIC = 0;         // 0 "" ...
+Arduino.ORDER_UNARY_POSTFIX = 1;  // expr++ expr-- () [] .
+Arduino.ORDER_UNARY_PREFIX = 2;   // -expr !expr ~expr ++expr --expr
+Arduino.ORDER_MULTIPLICATIVE = 3; // * / % ~/
+Arduino.ORDER_ADDITIVE = 4;       // + -
+Arduino.ORDER_SHIFT = 5;          // << >>
+Arduino.ORDER_RELATIONAL = 6;     // is is! >= > <= <
+Arduino.ORDER_EQUALITY = 7;       // == != === !==
+Arduino.ORDER_BITWISE_AND = 8;    // &
+Arduino.ORDER_BITWISE_XOR = 9;    // ^
+Arduino.ORDER_BITWISE_OR = 10;    // |
+Arduino.ORDER_LOGICAL_AND = 11;   // &&
+Arduino.ORDER_LOGICAL_OR = 12;    // ||
+Arduino.ORDER_CONDITIONAL = 13;   // expr ? expr : expr
+Arduino.ORDER_ASSIGNMENT = 14;    // = *= /= ~/= %= += -= <<= >>= &= ^= |=
+Arduino.ORDER_NONE = 99;          // (...)
 
 /*
  * Arduino Board profiles
@@ -92,15 +100,15 @@ profile["default"] = profile["arduino"];
  * Initialise the database of variable names.
  * @param {!Blockly.Workspace} workspace Workspace to generate code from.
  */
-Blockly.Arduino.init = function(workspace) {
+Arduino.init = function(workspace) {
   // Create a dictionary of definitions to be printed before setups.
-  Blockly.Arduino.definitions_ = Object.create(null);
+  Arduino.definitions_ = Object.create(null);
   // Create a dictionary of setups to be printed before the code.
-  Blockly.Arduino.setups_ = Object.create(null);
+  Arduino.setups_ = Object.create(null);
 
-	if (!Blockly.Arduino.variableDB_) {
-		Blockly.Arduino.variableDB_ =
-				new Blockly.Names(Blockly.Arduino.RESERVED_WORDS_);
+	if (Arduino.variableDB_) {
+		Arduino.variableDB_ =
+				new Blockly.Names(Arduino.RESERVED_WORDS_);
 	} else {
 		Blockly.Arduino.variableDB_.reset();
 	}
@@ -120,7 +128,7 @@ Blockly.Arduino.init = function(workspace) {
  * @param {string} code Generated code.
  * @return {string} Completed code.
  */
-Blockly.Arduino.finish = function(code) {
+Arduino.finish = function(code) {
   // Indent every line.
   code = '  ' + code.replace(/\n/g, '\n  ');
   code = code.replace(/\n\s+$/, '\n');
@@ -129,8 +137,8 @@ Blockly.Arduino.finish = function(code) {
   // Convert the definitions dictionary into a list.
   var imports = [];
   var definitions = [];
-  for (var name in Blockly.Arduino.definitions_) {
-    var def = Blockly.Arduino.definitions_[name];
+  for (var name in Arduino.definitions_) {
+    var def = Arduino.definitions_[name];
     if (def.match(/^#include/)) {
       imports.push(def);
     } else {
@@ -154,7 +162,7 @@ Blockly.Arduino.finish = function(code) {
  * @param {string} line Line of generated code.
  * @return {string} Legal line of code.
  */
-Blockly.Arduino.scrubNakedValue = function(line) {
+Arduino.scrubNakedValue = function(line) {
   return line + ';\n';
 };
 
@@ -164,7 +172,7 @@ Blockly.Arduino.scrubNakedValue = function(line) {
  * @return {string} Arduino string.
  * @private
  */
-Blockly.Arduino.quote_ = function(string) {
+Arduino.quote_ = function(string) {
   // TODO: This is a quick hack.  Replace with goog.string.quote
   string = string.replace(/\\/g, '\\\\')
                  .replace(/\n/g, '\\\n')
@@ -182,7 +190,7 @@ Blockly.Arduino.quote_ = function(string) {
  * @return {string} Arduino code with comments and subsequent blocks added.
  * @private
  */
-Blockly.Arduino.scrub_ = function(block, code) {
+Arduino.scrub_ = function(block, code) {
   if (code === null) {
     // Block has handled code generation itself.
     return '';
@@ -210,6 +218,6 @@ Blockly.Arduino.scrub_ = function(block, code) {
     }
   }
   var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
-  var nextCode = Blockly.Arduino.blockToCode(nextBlock);
+  var nextCode = Arduino.blockToCode(nextBlock);
   return commentCode + code + nextCode;
 };

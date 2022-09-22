@@ -22,5 +22,4 @@ goog.require('Blockly.PHP.procedures');
 goog.require('Blockly.PHP.texts');
 goog.require('Blockly.PHP.variables');
 goog.require('Blockly.PHP.variablesDynamic');
-goog.require('Blockly.PHP.base');
 

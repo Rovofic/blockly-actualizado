@@ -36,8 +36,8 @@ exports.TestCase = TestCase;
 /**
  * Test suite configuration.
  * @record
- * @template {TestCase} T
- * @template {TestSuite} U
+ * @template TestCase T
+ * @template TestSuite U
  */
 class TestSuite {
   /**

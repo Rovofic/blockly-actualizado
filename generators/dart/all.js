@@ -22,6 +22,5 @@ goog.require('Blockly.Dart.procedures');
 goog.require('Blockly.Dart.texts');
 goog.require('Blockly.Dart.variables');
 goog.require('Blockly.Dart.variablesDynamic');
-goog.require('Blockly.Dart.base');
 
 
