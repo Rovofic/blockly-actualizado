@@ -102,6 +102,7 @@
     "yargs": "^17.2.1"
   },
   "dependencies": {
+    "google-closure-library": "^20220905.0.0",
     "jsdom": "15.2.1"
   }
 }
