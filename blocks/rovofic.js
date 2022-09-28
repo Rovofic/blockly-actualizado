@@ -27,7 +27,7 @@
  * @author gasolin@gmail.com (Fred Lin)
  */
 
- goog.module('Blockly.libraryBlocks.desarrollorovofic');
+ goog.module('Blockly.libraryBlocks.rovofic');
 
 
 const {Align} = goog.require('Blockly.Input');

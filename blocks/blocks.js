@@ -22,8 +22,8 @@ const procedures = goog.require('Blockly.libraryBlocks.procedures');
 const texts = goog.require('Blockly.libraryBlocks.texts');
 const variables = goog.require('Blockly.libraryBlocks.variables');
 const variablesDynamic = goog.require('Blockly.libraryBlocks.variablesDynamic');
-const baserovofic = goog.require('Blockly.libraryBlocks.baserovofic');
-const desarrollorovofic = goog.require('Blockly.libraryBlocks.desarrollorovofic');
+const base = goog.require('Blockly.libraryBlocks.base');
+const rovofic = goog.require('Blockly.libraryBlocks.rovofic');
 
 /* eslint-disable-next-line no-unused-vars */
 const {BlockDefinition} = goog.requireType('Blockly.blocks');
@@ -38,8 +38,8 @@ exports.procedures = procedures;
 exports.texts = texts;
 exports.variables = variables;
 exports.variablesDynamic = variablesDynamic;
-exports.baserovofic = baserovofic;
-exports.desarrollorovofic = desarrollorovofic;
+exports.base = base;
+exports.rovofic = rovofic;
 /**
  * A dictionary of the block definitions provided by all the
  * Blockly.libraryBlocks.* modules.
@@ -47,5 +47,5 @@ exports.desarrollorovofic = desarrollorovofic;
  */
 const blocks = Object.assign(
     {}, colour.blocks, lists.blocks, logic.blocks, loops.blocks, math.blocks,
-    procedures.blocks, variables.blocks, variablesDynamic.blocks,baserovofic.blocks,desarrollorovofic.blocks);
+    procedures.blocks, variables.blocks, variablesDynamic.blocks,base.blocks,rovofic.blocks);
 exports.blocks = blocks;

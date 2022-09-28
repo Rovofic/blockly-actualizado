@@ -26,7 +26,7 @@
 
 //To support syntax defined in http://arduino.cc/en/Reference/HomePage
 
-goog.module('Blockly.libraryBlocks.baserovofic');
+goog.module('Blockly.libraryBlocks.base');
 
 const {Align} = goog.require('Blockly.Input');
 const {BlockDefinition} = goog.requireType('Blockly.blocks');
@@ -41,28 +41,28 @@ const {createBlockDefinitionsFromJsonArray, defineBlocks} = goog.require('Blockl
  const blocks = createBlockDefinitionsFromJsonArray([
   // Block for variable getter.
   {
-    'type': 'baserovofic_get_dynamic',
+    'type': 'base_get_dynamic',
     'message0': '%1',
     'args0': [{
       'type': 'field_',
-      'name': 'BASEROVOFIC',
-      'variable': '%{BKY_BASEROVOFIC_DEFAULT_NAME}',
+      'name': 'BASE',
+      'variable': '%{BKY_BASE_DEFAULT_NAME}',
     }],
     'output': null,
     'style': 'variable_dynamic_blocks',
-    'helpUrl': '%{BKY_BASEROVOFIC_GET_HELPURL}',
+    'helpUrl': '%{BKY_BASE_GET_HELPURL}',
     'tooltip': '%{BKY_VARIABLES_GET_TOOLTIP}',
-    'extensions': ['contextMenu_baserovoficSetterGetter'],
+    'extensions': ['contextMenu_baseSetterGetter'],
   },
   // Block for variable setter.
   {
-    'type': 'baserovofic_set_dynamic',
-    'message0': '%{BKY_BASEROVOFIC_SET}',
+    'type': 'base_set_dynamic',
+    'message0': '%{BKY_BASE_SET}',
     'args0': [
       {
         'type': 'field_',
-        'name': 'BASEROVOFIC',
-        'variable': '%{BKY_BASEROVOFIC_DEFAULT_NAME}',
+        'name': 'BASE',
+        'variable': '%{BKY_BASE_DEFAULT_NAME}',
       },
       {
         'type': 'input_value',
@@ -72,15 +72,15 @@ const {createBlockDefinitionsFromJsonArray, defineBlocks} = goog.require('Blockl
     'previousStatement': null,
     'nextStatement': null,
     'style': 'variable_dynamic_blocks',
-    'tooltip': '%{BKY_BASEROVOFIC_SET_TOOLTIP}',
-    'helpUrl': '%{BKY_BASEROVOFIC_SET_HELPURL}',
-    'extensions': ['contextMenu_baserovoficSetterGetter'],
+    'tooltip': '%{BKY_BASE_SET_TOOLTIP}',
+    'helpUrl': '%{BKY_BASE_SET_HELPURL}',
+    'extensions': ['contextMenu_baseSetterGetter'],
   },
 ]);
 exports.blocks = blocks;
 
 
-blocks['baserovofic_delay'] = {
+blocks['base_delay'] = {
   /**
    ** @this {Block}
    */
@@ -98,7 +98,7 @@ blocks['baserovofic_delay'] = {
 };
 
 
-blocks['baserovofic_delay_init'] = {
+blocks['base_delay_init'] = {
     /**
    ** @this {Block}
    */
@@ -113,7 +113,7 @@ blocks['baserovofic_delay_init'] = {
   }
 };
 
-blocks['baserovofic_delay_fin'] = {
+blocks['base_delay_fin'] = {
     /**
    ** @this {Block}
    */
@@ -128,7 +128,7 @@ blocks['baserovofic_delay_fin'] = {
   }
 };
 
-blocks['baserovofic_map'] = {
+blocks['base_map'] = {
     /**
    ** @this {Block}
    */
